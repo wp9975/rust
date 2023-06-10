@@ -139,4 +139,172 @@ pub fn basics1(){
     let y = x;
     println!("x = {}, y = {}", x, y);
 }
+
+pub fn basics2(){
+    let name = "Alice"; // immutable variable
+    let mut age = 20; // mutable variable
+    println!("Hello, {}!", name);
+    println!("You're {} years old.", age);
+
+    age = age + 1;
+    println!("Next year, you'll be {}.", age);
+
+    greet("Bob");
+
+    let result = add(5, 7);
+    println!("5 + 7 = {}", result);
+
+    let numbers = vec![1, 2, 3, 4, 5]; // a vector of integers
+
+    for num in numbers {
+        println!("{}", num);
+    }
+
+    if is_even(result) {
+        println!("{} is even.", result);
+    } else {
+        println!("{} is odd.", result);
+    }
+
+    let mut counter = 0;
+    loop {
+        counter += 1;
+        if counter > 5 {
+            break;
+        }
+        println!("Looping... {}", counter);
+    }
 }
+
+// A function that takes a string and prints a greeting
+fn greet(name: &str) {
+    println!("Hello, {}!", name);
+}
+
+// A function that adds two integers and returns the result
+fn add(a: i32, b: i32) -> i32 {
+    a + b
+}
+
+// A function that checks if a number is even
+fn is_even(num: i32) -> bool {
+    num % 2 == 0
+}
+
+
+pub fn basics3(){
+      // Constants
+      const MAX_POINTS: u32 = 100_000;
+
+      // Shadowing
+      let x = 5;
+      let x = x + 1;
+      let x = x * 2;
+      println!("The value of x is: {}", x); // x is now 12
+  
+      // Data types
+      let guess: u32 = "42".parse().expect("Not a number!"); // scalar type
+      let a = [1, 2, 3, 4, 5]; // array type
+      let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; // array type
+  
+      // Functions with multiple parameters
+      print_sum(5, 6);
+  
+      // Control flow
+      let condition = true;
+      let number = if condition { 5 } else { 6 };
+      println!("The value of number is: {}", number);
+  
+      // Loop and while
+      let mut counter = 0;
+      let result = loop {
+          counter += 1;
+          if counter == 10 {
+              break counter * 2;
+          }
+      };
+      println!("The result is {}", result);
+  
+      let mut number = 3;
+      while number != 0 {
+          println!("{}!", number);
+          number -= 1;
+      }
+      println!("LIFTOFF!!!");
+  
+      // For loop
+      let a = [10, 20, 30, 40, 50];
+      for element in a.iter() {
+          println!("the value is: {}", element);
+      }
+  
+      for number in (1..4).rev() {
+          println!("{}!", number);
+      }
+      println!("LIFTOFF!!!");
+  }
+  
+  fn print_sum(x: i32, y: i32) {
+      println!("sum is: {}", x + y);
+  }
+
+  pub fn basics4(){
+       // Structs
+       let mut rect1 = Rectangle { width: 30, height: 50 };
+       println!(
+           "The area of the rectangle is {} square pixels.",
+           rect1.area()
+       );
+       rect1.double_width();
+       println!(
+           "The area of the rectangle after doubling the width is {} square pixels.",
+           rect1.area()
+       );
+   
+       // Enums
+       let home = IpAddr::V4(String::from("127.0.0.1"));
+       let loopback = IpAddr::V6(String::from("::1"));
+       home.call();
+       loopback.call();
+   
+       let some_number = Some(5);
+       let some_string = Some("a string");
+       let absent_number: Option<i32> = None;
+       println!("{:?}, {:?}, {:?}", some_number, some_string, absent_number);
+   }
+   
+   // Structs
+   struct Rectangle {
+       width: u32,
+       height: u32,
+   }
+   
+   impl Rectangle {
+       fn area(&self) -> u32 {
+           self.width * self.height
+       }
+   
+       fn double_width(&mut self) {
+           self.width *= 2;
+       }
+   }
+   
+   // Enums
+   enum IpAddr {
+       V4(String),
+       V6(String),
+   }
+   
+   impl IpAddr {
+       fn call(&self) {
+           match self {
+               IpAddr::V4(addr) => println!("Calling IPv4 address: {}", addr),
+               IpAddr::V6(addr) => println!("Calling IPv6 address: {}", addr),
+           }
+       }
+   }
+  }
+
+
+
+
